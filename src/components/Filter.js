@@ -1,9 +1,9 @@
-import { nanoid } from "nanoid";
+import shortid from "shortid";
 import PropTypes from 'prop-types'
 import styles from "./PhoneBook.module.css";
 
 const Filter = ({ filterQueue }) => {
-    const filterId = nanoid();
+    const filterId = shortid.generate();
 
     const handleChange = e => {
         const { value } = e.target;
