@@ -11,6 +11,7 @@ export default class App extends Component {
     filter: '',
   };
 
+
   addContact = (name, number) => {
     const alreadyContacts = this.chekIfContactsExists(name)
 
