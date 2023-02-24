@@ -32,6 +32,7 @@ export default class App extends Component {
 
   };
 
+  
   handleFilter = queue => {
     queue ? this.setState({ filter: queue }) : this.setState({ filter: '' });
   };
