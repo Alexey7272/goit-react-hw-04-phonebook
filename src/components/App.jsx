@@ -11,7 +11,6 @@ export default class App extends Component {
     filter: '',
   };
 
-
   addContact = (name, number) => {
     const alreadyContacts = this.chekIfContactsExists(name)
 
@@ -29,10 +28,9 @@ export default class App extends Component {
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
-
   };
 
-  
+
   handleFilter = queue => {
     queue ? this.setState({ filter: queue }) : this.setState({ filter: '' });
   };

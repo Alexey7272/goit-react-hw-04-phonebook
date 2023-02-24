@@ -1,44 +1,50 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import styles from "./PhoneBook.module.css";
 
-class ContactEditor extends Component {
-    state = {
-       name: '',
-       number: '',
+
+export default function ContactEditor ({onSubmit}) {
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+
+    const resetForm = () => {
+        setName('');
+        setNumber('');
     };
 
-    contactChange = e => {
-        const { name, value } = e.currentTarget;
-        this.setState({ [name]: value });
-    };
-    
-    // nameChange = e => {
-    //     this.setState({ nameText: e.currentTarget.value })
-    // };
+    const contactChange = evt => {
+        const { name, value } = evt.currentTarget;
 
-    // numberChange = e => {
-    //     this.setState({ telNumber: e.currentTarget.value  })
-    // };
-    
-    formSubmit = e => {
-        e.preventDefault();
-    
-        this.props.onSubmit(this.state.name, this.state.number);
+        switch (name) {
+            case 'name':
+                setName(value);
+            break;
 
-        this.setState({name: '', number: ''});
+            case 'number':
+                setNumber(value);
+            break;
+
+            default: 
+              return;
+        };
     };
 
-    render() {
-        return (
-            <form className={styles.AddContact} onSubmit={this.formSubmit}> 
+    const formSubmit = evt => {
+        evt.preventDefault();
+        onSubmit({ name, number });
+        resetForm();
+    };
+
+    
+    return (
+        <form className={styles.AddContact} onSubmit={formSubmit}> 
   
                 <label className={styles.AddContact__label}>
 
                     Name
                     <input
                        name="name"
-                       value={this.state.name} 
-                       onChange={this.contactChange}  
+                       value={name} 
+                       onChange={contactChange}  
                        className={styles.AddContact__data}
                     />
                     
@@ -49,18 +55,92 @@ class ContactEditor extends Component {
                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                        required
-                       value={this.state.number} 
-                       onChange={this.contactChange} 
+                       value={number} 
+                       onChange={contactChange} 
                        className={styles.AddContact__data}
                     />
                 </label>
 
                 <button type="submit" className={styles.AddContact__button}>Add contact</button>
 
-            </form>
-        )
-    };
-};
+        </form>
+    )
+}
 
 
-export default ContactEditor;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class ContactEditor extends Component {
+//     state = {
+//        name: '',
+//        number: '',
+//     };
+
+//     contactChange = e => {
+//         const { name, value } = e.currentTarget;
+//         this.setState({ [name]: value });
+//     };
+    
+//     formSubmit = e => {
+//         e.preventDefault();
+    
+//         this.props.onSubmit(this.state.name, this.state.number);
+
+//         this.setState({name: '', number: ''});
+//     };
+
+//     render() {
+//         return (
+//             <form className={styles.AddContact} onSubmit={this.formSubmit}> 
+  
+//                 <label className={styles.AddContact__label}>
+
+//                     Name
+//                     <input
+//                        name="name"
+//                        value={this.state.name} 
+//                        onChange={this.contactChange}  
+//                        className={styles.AddContact__data}
+//                     />
+                    
+//                     Number
+//                     <input
+//                        type="tel"
+//                        name="number"
+//                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+//                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+//                        required
+//                        value={this.state.number} 
+//                        onChange={this.contactChange} 
+//                        className={styles.AddContact__data}
+//                     />
+//                 </label>
+
+//                 <button type="submit" className={styles.AddContact__button}>Add contact</button>
+
+//             </form>
+//         )
+//     };
+// };
+
+
+// export default ContactEditor;
