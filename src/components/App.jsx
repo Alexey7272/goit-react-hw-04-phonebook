@@ -6,7 +6,6 @@ import styles from "./PhoneBook.module.css";
 import shortid from "shortid";
 
 export default class App extends Component {
-
   state = {
     contacts: [],
     filter: '',
