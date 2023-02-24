@@ -64,26 +64,8 @@ export default function ContactEditor ({onSubmit}) {
                 <button type="submit" className={styles.AddContact__button}>Add contact</button>
 
         </form>
-    )
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    );
+};
 
 
 
