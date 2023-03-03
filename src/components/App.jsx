@@ -12,6 +12,12 @@ export default function App () {
   });
   const [ filter, setFilter ] = useState('');
 
+  useEffect((prevState) => {
+    if ( contacts !== prevState) {
+      localStorage.setItem('contacts', JSON.stringify(contacts))
+    };
+  });
+
   const chekIfContactsExists = queue => {
     return contacts.some(contact => contact.name === queue);
   };
@@ -51,11 +57,6 @@ export default function App () {
     );
   };
 
-  useEffect((prevState) => {
-    if ( contacts !== prevState) {
-      localStorage.setItem('contacts', JSON.stringify(contacts))
-    };
-  });
 
   return (
       <div>
